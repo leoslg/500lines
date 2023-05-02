@@ -44,7 +44,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         """
 
     # Classify and handle request.
-    def do_GET(self):
+    def do_GET(self, ServerException):
 
         # Handle any errors that aren't handled elsewhere.
         try:
@@ -73,7 +73,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 raise ServerException, "Unknown object '%s'" % self.path
 
         # Handle errors.
-        except Exception, msg:
+        except Exception as msg:
             self.handle_error(msg)
 
     def handle_file(self, full_path):
@@ -82,7 +82,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             content = input.read()
             input.close()
             self.send_content(content)
-        except IOError, msg:
+        except IOError as msg:
             msg = "'%s' cannot be read: %s" % (self.path, msg)
             self.handle_error(msg)
 
@@ -93,7 +93,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             content = self.Listing_Page % {'path'   : self.path,
                                            'filler' : filler}
             self.send_content(content)
-        except IOError, msg:
+        except IOError as msg:
             msg = "'%s' cannot be listed: %s" % (self.path, msg)
             self.handle_error(msg)
 

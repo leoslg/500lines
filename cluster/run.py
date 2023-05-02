@@ -68,7 +68,7 @@ if __name__ == "__main__":
     else:
         rndseed = int(sys.argv[1])
         pause = True
-    print "RANDOM SEED:", rndseed
+    print ("RANDOM SEED:"), rndseed
     network = deterministic_network.Network(rndseed, pause)
 
     logging.basicConfig(
@@ -112,4 +112,4 @@ if __name__ == "__main__":
     try:
         network.run()
     finally:
-        print "RANDOM SEED:", rndseed
+        print ("RANDOM SEED:", rndseed)

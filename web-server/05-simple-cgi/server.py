@@ -69,7 +69,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.err_not_found(abs_path)
 
         # Handle general errors.
-        except Exception, msg:
+        except Exception as msg:
             self.err_internal("Unexpected exception in main despatch: %s" % msg)
 
     def parse_path(self):
@@ -111,7 +111,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             input.close()
             file_type = self.guess_file_type(abs_path)
             self.send_content(content, file_type)
-        except IOError, msg:
+        except IOError as msg:
             self.err_no_perm("'%s' cannot be read: %s" % (self.path, msg))
 
     # Handle directories.
@@ -137,7 +137,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             content = listing_page % {'path'   : self.path,
                                       'filler' : filler}
             self.send_content(content)
-        except IOError, msg:
+        except IOError as msg:
             self.err_no_perm("'%s' cannot be listed: %s" % msg)
 
     # Handle executable file.
@@ -184,7 +184,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     # Write a log message if in debugging mode
     def log(self, msg):
         if self.Debug:
-            print "nitinat:", msg
+            print("nitinat:", msg)
 
 #----------------------------------------------------------------------
 
@@ -218,7 +218,7 @@ if __name__ == '__main__':
         elif flag == "-p":
             try:
                 port = int(arg)
-            except ValueError, msg:
+            except ValueError as msg:
                 fatal("Unable to convert '%s' to integer: %s" % (arg, msg))
         elif flag == "-r":
             root = os.getcwd()

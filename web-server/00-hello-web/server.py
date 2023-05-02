@@ -7,7 +7,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     Page = '''\
 <html>
 <body>
-<p>Hello, Nitinat!</p>
+<p>Hello, leoslg!</p>
 </body>
 </html>
 '''
